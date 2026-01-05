@@ -1,15 +1,16 @@
-[gd_scene load_steps=49 format=4 uid="uid://cewb0wwkltaro"]
+[gd_scene load_steps=50 format=4 uid="uid://cewb0wwkltaro"]
 
-[ext_resource type="Script" path="res://Scripts/TilemapCollisionBaker.gd" id="1_4wnmq"]
+[ext_resource type="Script" uid="uid://ddnkmfxohgk23" path="res://Scripts/TilemapCollisionBaker.gd" id="1_4wnmq"]
 [ext_resource type="Texture2D" uid="uid://d2t7jrxpwa5bh" path="res://Sprites/Terrain (16x16).png" id="1_adpil"]
 [ext_resource type="Texture2D" uid="uid://ppnimroy8yev" path="res://Sprites/Yellow.png" id="2_baf7t"]
-[ext_resource type="Script" path="res://Scripts/player.gd" id="3_hhs4r"]
+[ext_resource type="Script" uid="uid://7aatgkao125m" path="res://Scripts/player.gd" id="3_hhs4r"]
 [ext_resource type="Texture2D" uid="uid://bvoab4i3nu2cd" path="res://Sprites/Idle (32x32).png" id="3_ll1tm"]
 [ext_resource type="Texture2D" uid="uid://clwltgdse7jg1" path="res://Sprites/Run (32x32).png" id="4_cwmv4"]
 [ext_resource type="Texture2D" uid="uid://bv8s5rj6gtggx" path="res://Sprites/Jump (32x32).png" id="5_2nkl7"]
-[ext_resource type="Script" path="res://Scripts/button.gd" id="7_p1bfl"]
+[ext_resource type="Script" uid="uid://dkigebsnojs6j" path="res://Scripts/button.gd" id="7_p1bfl"]
 [ext_resource type="PackedScene" uid="uid://3a3ptnbiyctd" path="res://box.tscn" id="8_46gv7"]
 [ext_resource type="FontFile" uid="uid://ctv4bknwspuvl" path="res://monogram.ttf" id="9_3yt7b"]
+[ext_resource type="Script" uid="uid://ptle8hl5y06s" path="res://save_load_manager.gd" id="10_fy5k1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpa2h"]
 size = Vector2(176, 192)
@@ -464,7 +465,9 @@ shape = SubResource("RectangleShape2D_f5rag")
 position = Vector2(0, -2)
 texture = SubResource("GradientTexture2D_njhuh")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("10_fy5k1")
+player = NodePath("../Player")
 
 [node name="Save" type="Button" parent="UI"]
 anchors_preset = 7
@@ -502,3 +505,4 @@ text = " Load "
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
+[connection signal="pressed" from="UI/Save" to="UI" method="_save"]
