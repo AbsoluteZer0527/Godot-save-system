@@ -32,5 +32,10 @@ func _load() -> void:
 	for box in data.box_array:
 		var box_node = box.instantiate()
 		get_tree().current_scene.add_child(box_node)
+		box_node.freeze = true
 		
+	await get_tree().create_timer(0.1).timeout
+	
+	for box in get_tree().get_nodes_in_group("Box"):
+			box.freeze = false
 	print("loaded!")
