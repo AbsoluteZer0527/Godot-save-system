@@ -506,3 +506,4 @@ text = " Load "
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area2D" to="Area2D" method="_on_body_exited"]
 [connection signal="pressed" from="UI/Save" to="UI" method="_save"]
+[connection signal="pressed" from="UI/Load" to="UI" method="_load"]
